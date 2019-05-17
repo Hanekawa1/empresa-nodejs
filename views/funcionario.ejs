@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+    
+      </head>
+
+      <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href=""><img src="/img/icon.png" style="width: 50px" /></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Início <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/cadastro">Cadastrar Empresa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/funcionario">Cadastrar Funcionário</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+          <div class="container">
+            <div> <h1><%= title %></h1> </div>
+            <form action="/funcionario" method="POST">
+                
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="nomeFuncionario"><span>*</span>Nome:</label>
+                        <input type="text" class="form-control" placeholder="Nome do Funcionário" 
+                        name="nomeFuncionario"/>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="matricula"><span>*</span>Matrícula:</label>
+                        <input type="number" class="form-control" placeholder="Matrícula do Funcionário"
+                        name="matricula" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="rg"><span>*</span>RG:</label>
+                        <input type="text" class="form-control" placeholder="RG do Funcionário" 
+                        name="rg"/>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                            <label for="cpf"><span>*</span>CPF:</label>
+                            <input type="number" class="form-control" placeholder="CPF do Funcionário"
+                            name="cpf"/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-10">
+                            <label for="rua"><span>*</span>Rua:</label>
+                            <input type="text" class="form-control" placeholder="Rua, Avenida, etc..." 
+                            name="rua"/>
+                    </div>
+                    <div class="form-group col-md-2">
+                            <label for="numero"><span>*</span>Numero:</label>
+                            <input type="number" class="form-control" placeholder="Número" 
+                            name="numero"/>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col-md-6">
+                                <label for="bairro"><span>*</span>Bairro:</label>
+                                <input type="text" class="form-control" placeholder="Bairro" 
+                                name="bairro"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                                <label for="cidade"><span>*</span>Cidade:</label>
+                                <input type="text" class="form-control" placeholder="Cidade" 
+                                name="cidade"/>
+                        </div>
+                    </div>
+
+                <button type="submit" class="btn btn-primary" id="btnSalvar">
+                    Salvar
+                </button>
+                <button type="button" class="btn btn-primary" id="btnInicio" onclick="window.location.href = '/';">
+                    Início
+                </button>
+            </form>
+            <h1>Lista de Funcionários já cadastrados</h1>
+            <table class="table">
+                    <thead class="thead-dark">
+                      <tr>
+                        <th>Nome Funcionário</th>
+                        <th>Matricula</th>
+                        <th>RG</th>
+                        <th>CPF</th>
+                        <th>Rua</th>
+                        <th>Numero</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Editar</th>
+                        <th>Excluir</th>
+                      </tr>
+                    </thead>
+          
+                    <tbody>
+                      <% docs.forEach(function(dados) { %>
+                      <tr>
+                        <td><%= dados.nome%></td>
+                        <td><%= dados.matricula%></td>
+                        <td><%= dados.rg%></td>
+                        <td><%= dados.cpf%></td>
+                        <td><%= dados.rua%></td>
+                        <td><%= dados.numero%></td>
+                        <td><%= dados.bairro%></td>
+                        <td><%= dados.cidade%></td>
+                        <td><button type="button" class="btn btn-warning" onclick="window.location.href = '/atualizar/<%= dados._id%>';">Editar</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="window.location.href = '/deletar';">Excluir</button></td>
+                      </tr>
+                      <%})%>
+                    </tbody>
+                  </table>
+          </div>
+      </body>
+
+</html>
+<style>
+        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+</style>
+    

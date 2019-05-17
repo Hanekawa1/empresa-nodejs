@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+
+  </head>
+  <body>
+    <div class="container">
+      <form action="/deletar" method="POST">
+        <div><h1>Deletar</h1></div>
+
+        <div class="form-group">
+          <label for="nomeEmpresa">Nome Empresa:</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nome empresa" name="nome"/>
+          <small id="emailHelp" class="form-text text-muted">Nome da Empresa cadastrada.</small>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btnDeletar">
+            Deletar
+        </button>
+        <button type="button" class="btn btn-primary" id="btnInicio" onclick="window.location.href = '/';">
+            Início
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
