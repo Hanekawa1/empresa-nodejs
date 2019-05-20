@@ -13,7 +13,8 @@ function cadastrarEmpresas(dados, callback){
 }
 
 var ObjectId = require("mongodb").ObjectId;
-function findOne(id, callback){
+
+function buscarEmpresaPorId(id, callback){
     global.conn.collection("dadosempresa").find(new ObjectId(id)).toArray(callback);
 }
 
@@ -36,7 +37,7 @@ function listarFuncionarios(callback){
 module.exports = { 
     listarEmpresas, 
     cadastrarEmpresas, 
-    findOne, 
+    buscarEmpresaPorId, 
     deletarEmpresa, 
     atualizarEmpresa, 
     inserirFuncionario,

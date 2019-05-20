@@ -9,13 +9,20 @@ router.get('/', function(req, res) {
     docs : docs});
   });
 });
-
-router.get('/cadastro', function(req, res) {
+/*
+router.get('/', function(req, res) {
   global.db.listarEmpresas((error, docs) =>{
     if(error){console.log(error);}
     res.render('cadastro', { title: "Cadastrar Empresas",
+    dadosempresa: {nome: "", logradouro: "", numero: "", bairro: "", cidade: ""},
     docs : docs});
   });
+});
+*/
+router.get('/cadastro', function(req, res){
+  res.render('cadastro', {title: "Cadastrar empresa", 
+              dadosempresa: {nome: "", logradouro: "", numero: "", bairro: "", cidade: ""}, 
+              action: '/cadastro' });
 });
 
 router.post('/cadastro', function(req, res){
@@ -30,7 +37,7 @@ router.post('/cadastro', function(req, res){
     });
 });
 
-router.get('/atualizar', function(req, res, next){
+router.get('/edit', function(req, res, next){
   res.render('atualizar', { title: "Atualizar uma Empresa", doc: {"nome":"", "endereco":"", "numero":"", "bairro":"", "cidade":"" }, action: '/atualizar'});
 });
 
@@ -38,11 +45,11 @@ router.get('/deletar', function(req, res){
   res.render('deletar', {title: "Deletar uma Empresa"});
 });
 
-router.get('/atualizar/:id', function(req, res, next){
+router.get('/edit/:id', function(req, res){
     var id = req.params.id;
-    global.db.findOne(id, (error, resultado) => {
+    global.db.buscarEmpresaPorId(id, (error, docs) => {
       if(error) { return console.log(error);}
-      res.render('/atualizar', {title: "Atualizar uma empresa", doc: resultado[0], action: '/atualizar/' + resultado[0]._id});
+      res.render('cadastro', {title: "Atualizar uma empresa", dadosempresa : docs[0], action: '/edit/' + docs[0]._id});
     });
 });
 

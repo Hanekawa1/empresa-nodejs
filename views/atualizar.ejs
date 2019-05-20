@@ -6,38 +6,38 @@
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
 
   </head>
-  <body>
+  <body style="padding: 0px !important">
     <div class="container">
       <h1><%= title %></h1>
 
       <form action="/atualizar" method="POST">
         <div class="form-group">
           <label for="nomeEmpresa">Nome Empresa:</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nome empresa" name="nome" value="<%= resultado.nome %>"/>
+          <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Nome empresa" name="nome" value="<%= dadosempresa.nome %>"/>
           <small id="emailHelp" class="form-text text-muted">Pode ser tanto o Nome quanto a Razão Social da empresa.</small>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-10">
             <label for="endereco">Logradouro:</label>
-            <input type="text" class="form-control" placeholder="Rua, avenida, etc..." name="endereco" value="<%= resultado.endereco %>"/>
+            <input type="text" class="form-control" placeholder="Rua, avenida, etc..." name="endereco" value="<%= dadosempresa.logradouro %>"/>
           </div>
 
           <div class="form-group col-md-2">
             <label for="numero">Número:</label>
-            <input type="number" class="form-control" placeholder="Número" name="numero" value="<%= resultado.numero %>"/>
+            <input type="number" class="form-control" placeholder="Número" name="numero" value="<%= dadosempresa.numero %>"/>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="bairro">Bairro:</label>
-            <input type="text" class="form-control" placeholder="Bairro" name="bairro" value="<%= resultado.bairro %>"/>
+            <input type="text" class="form-control" placeholder="Bairro" name="bairro" value="<%= dadosempresa.bairro %>"/>
           </div>
 
           <div class="form-group col-md-6">
             <label for="cidade">Cidade:</label>
-            <input type="text" class="form-control" placeholder="Cidade" name="cidade" value="<%= resultado.cidade %>"/>
+            <input type="text" class="form-control" placeholder="Cidade" name="cidade" value="<%= dadosempresa.cidade %>"/>
           </div>
         </div>
 
