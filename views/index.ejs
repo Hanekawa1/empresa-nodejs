@@ -37,6 +37,7 @@
         Cadastrar um Funcionário
       </button>
     </div>
+    <br>
     <div><h1>Empresas já cadastradas</h1></div>
     <table class="table">
       <thead class="thead-dark">
@@ -60,7 +61,7 @@
           <td><%= dados.bairro%></td>
           <td><%= dados.cidade%></td>
           <td><button type="button" class="btn btn-warning" onclick="window.location.href = '/edit/<%= dados._id%>';">Editar</button></td>
-          <td><button type="button" class="btn btn-danger" onclick="window.location.href = '/deletar';">Excluir</button></td>
+          <td><button type="button" class="btn btn-danger" onclick="window.location.href = '/deletar/<%= dados._id%>';">Excluir</button></td>
         </tr>
         <%})%>
       </tbody>

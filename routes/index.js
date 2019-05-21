@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
   global.db.listarEmpresas((error, docs) =>{
     if(error){console.log(error);}
-    res.render('index', { title: "Listar Empresas",
+    res.render('index', { title: "Gerenciar Empresas",
     docs : docs});
   });
 });
@@ -37,8 +37,17 @@ router.post('/cadastro', function(req, res){
     });
 });
 
-router.get('/edit', function(req, res, next){
-  res.render('atualizar', { title: "Atualizar uma Empresa", doc: {"nome":"", "endereco":"", "numero":"", "bairro":"", "cidade":"" }, action: '/atualizar'});
+router.post('/edit/:id', function(req, res){
+  var id = req.params.id;
+  var nome = req.body.nome;
+  var endereco = req.body.endereco;
+  var numero = parseInt(req.body.numero);
+  var bairro = req.body.bairro;
+  var cidade = req.body.cidade;
+  global.db.atualizarEmpresa(id, { nome, endereco, numero, bairro, cidade }, (error, resultado) => {
+    if(error){ return console.log(error);}
+    res.redirect('/');
+  });
 });
 
 router.get('/deletar', function(req, res){
@@ -53,6 +62,14 @@ router.get('/edit/:id', function(req, res){
     });
 });
 
+router.get('/deletar/:id', function(req, res){
+    var id = req.params.id;
+    global.db.deletarEmpresa(id, (error, docs) => {
+      if(error) { return console.log(error);}
+      res.redirect('/');
+    })
+})
+
 router.get('/funcionario', function(req, res){
   global.db.listarFuncionarios((error, docs) =>{
     if(error){console.log(error);}
@@ -60,7 +77,6 @@ router.get('/funcionario', function(req, res){
     docs : docs});
   });
 });
-
 
 router.post('/funcionario', function(req, res){
     var nome = req.body.nomeFuncionario;

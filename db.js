@@ -18,12 +18,19 @@ function buscarEmpresaPorId(id, callback){
     global.conn.collection("dadosempresa").find(new ObjectId(id)).toArray(callback);
 }
 
-function deletarEmpresa(dados, callback){
-    global.conn.collection("dadosempresa").remove({dados}).toArray(callback);
+function deletarEmpresa(id, callback){
+    global.conn.collection("dadosempresa").deleteOne({_id: new ObjectId(id)}, callback);
 }
 
-function atualizarEmpresa(dados, callback){
-    global.conn.collection("dadosempresa").update(dados, callback);
+function atualizarEmpresa(id, dados, callback){
+    global.conn.collection("dadosempresa").updateOne({_id: new ObjectId(id)},
+        {$set : {
+            nome: dados.nome, 
+            endereco: dados.endereco, 
+            numero: dados.numero,
+            bairro: dados.bairro,
+            cidade: dados.cidade }}, callback
+    );
 }
 
 function inserirFuncionario(dados, callback){
