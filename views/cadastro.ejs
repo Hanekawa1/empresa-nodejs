@@ -5,6 +5,26 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
 
+    <style>
+        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .spanO{
+          color: red;
+        }
+        .bg-primary{
+          background-color: #ffa500 !important;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: black;
+            text-decoration: solid;
+        }
+    </style>
   </head>
   <body style="padding: 0px !important">    
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -23,6 +43,12 @@
           <li class="nav-item">
             <a class="nav-link" href="/funcionario">Cadastrar Funcionário</a>
           </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/listarEmpresas">Listar Empresas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listarFunc">Listar Funcionários</a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -31,32 +57,32 @@
       <form action="<%= action %>" method="POST">
 
         <div class="form-group">
-          <label for="nomeEmpresa">Nome Empresa:</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" name="nome" value="<%= dadosempresa.nome%>"/>
+          <label for="nomeEmpresa"><span class="spanO">*</span>Nome Empresa:</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" name="nome" placeholder="Nome da Empresa" value="<%= dadosempresa.nome%>"/>
           <small id="emailHelp" class="form-text text-muted">Pode ser tanto o Nome quanto a Razão Social da empresa.</small>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-10">
-            <label for="endereco">Logradouro:</label>
-            <input type="text" class="form-control"  name="endereco" value="<%= dadosempresa.endereco%>"/>
+            <label for="endereco"><span class="spanO">*</span>Logradouro:</label>
+            <input type="text" class="form-control"  name="endereco"placeholder="Rua, avenida, etc..." value="<%= dadosempresa.endereco%>"/>
           </div>
 
           <div class="form-group col-md-2">
-            <label for="numero">Número:</label>
-            <input type="number" class="form-control" name="numero" value="<%= dadosempresa.numero%>"/>
+            <label for="numero"><span class="spanO">*</span>Número:</label>
+            <input type="number" class="form-control" name="numero" placeholder="Número" value="<%= dadosempresa.numero%>"/>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="bairro">Bairro:</label>
-            <input type="text" class="form-control" name="bairro" value="<%= dadosempresa.bairro%>"/>
+            <label for="bairro"><span class="spanO">*</span>Bairro:</label>
+            <input type="text" class="form-control" name="bairro" placeholder="Bairro" value="<%= dadosempresa.bairro%>"/>
           </div>
 
           <div class="form-group col-md-6">
-            <label for="cidade">Cidade:</label>
-            <input type="text" class="form-control" name="cidade" value="<%= dadosempresa.cidade%>"/>
+            <label for="cidade"><span class="spanO">*</span>Cidade:</label>
+            <input type="text" class="form-control" name="cidade" placeholder="Cidade" value="<%= dadosempresa.cidade%>"/>
           </div>
         </div>
 
@@ -71,13 +97,3 @@
   </body>
 </html>
 
-<style>
-    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type="number"] {
-        -moz-appearance: textfield;
-    }
-</style>

@@ -41,6 +41,28 @@ function listarFuncionarios(callback){
     global.conn.collection("dadosfuncionario").find({}).toArray(callback);
 }
 
+function buscarFuncionarioPorId(id, callback){
+    global.conn.collection("dadosfuncionario").find(new ObjectId(id)).toArray(callback);
+}
+
+function deletarFuncionario(id, callback){
+    global.conn.collection("dadosfuncionario").deleteOne({_id: new ObjectId(id)}, callback);
+}
+function atualizarFuncionario(id, dados, callback){
+    global.conn.collection("dadosfuncionario").updateOne({_id: new ObjectId(id)},
+        {$set: {
+            nome: dados.nome,
+            matricula : dados.matricula,
+            rg : dados.rg,
+            cpf : dados.cpf,
+            rua : dados.rua,
+            numero : dados.numero,
+            bairro : dados.bairro,
+            cidade : dados.cidade
+        }}, callback
+    );
+}
+
 module.exports = { 
     listarEmpresas, 
     cadastrarEmpresas, 
@@ -48,5 +70,8 @@ module.exports = {
     deletarEmpresa, 
     atualizarEmpresa, 
     inserirFuncionario,
-    listarFuncionarios
+    listarFuncionarios,
+    buscarFuncionarioPorId,
+    deletarFuncionario,
+    atualizarFuncionario
 }

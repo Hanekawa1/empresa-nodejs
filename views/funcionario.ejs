@@ -5,7 +5,29 @@
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     
-      </head>
+        
+        <style>
+            input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            .spanO{
+              color: red;
+            }
+            .bg-primary{
+                background-color: #ffa500 !important;
+            }
+            .navbar-dark .navbar-nav .nav-link {
+            color: black;
+            text-decoration: solid;
+        }
+        </style>
+
+    </head>
 
       <body style="padding: 0px !important">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -24,64 +46,70 @@
           <li class="nav-item">
             <a class="nav-link" href="/funcionario">Cadastrar Funcionário</a>
           </li>
+          <li class="nav-item">
+                <a class="nav-link" href="/listarEmpresas">Listar Empresas</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/listarFunc">Listar Funcionários</a>
+          </li>
         </ul>
       </div>
     </nav>
           <div class="container">
-            <div> <h1><%= title %></h1> </div>
-            <form action="/funcionario" method="POST">
+            <div class> <h1><%= title %></h1> </div>
+            <form action="<%= action %>" method="POST">
                 
                 <div class="form-row">
                     <div class="form-group col-md-8">
-                        <label for="nomeFuncionario"><span>*</span>Nome:</label>
+                        <label for="nomeFuncionario"><span class="spanO">*</span>Nome:</label>
                         <input type="text" class="form-control" placeholder="Nome do Funcionário" 
-                        name="nomeFuncionario"/>
+                        name="nomeFuncionario" value="<%= dadosfuncionario.nome%>" />
                     </div>
 
                     <div class="form-group col-md-4">
-                        <label for="matricula"><span>*</span>Matrícula:</label>
+                        <label for="matricula"><span class="spanO">*</span>Matrícula:</label>
                         <input type="number" class="form-control" placeholder="Matrícula do Funcionário"
-                        name="matricula" />
+                        name="matricula" value="<%= dadosfuncionario.matricula%>"/>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="rg"><span>*</span>RG:</label>
+                        <label for="rg"><span class="spanO">*</span>RG:</label>
                         <input type="text" class="form-control" placeholder="RG do Funcionário" 
-                        name="rg"/>
+                        name="rg" value="<%= dadosfuncionario.rg%>"/>
                     </div>
 
                     <div class="form-group col-md-6">
-                            <label for="cpf"><span>*</span>CPF:</label>
+                            <label for="cpf"><span class="spanO">*</span>CPF:</label>
                             <input type="number" class="form-control" placeholder="CPF do Funcionário"
-                            name="cpf"/>
+                            name="cpf" value="<%= dadosfuncionario.cpf%>"/>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-10">
-                            <label for="rua"><span>*</span>Rua:</label>
+                            <label for="rua"><span class="spanO">*</span>Rua:</label>
                             <input type="text" class="form-control" placeholder="Rua, Avenida, etc..." 
-                            name="rua"/>
+                            name="rua" value="<%= dadosfuncionario.rua%>"/>
                     </div>
                     <div class="form-group col-md-2">
-                            <label for="numero"><span>*</span>Numero:</label>
+                            <label for="numero"><span class="spanO">*</span>Numero:</label>
                             <input type="number" class="form-control" placeholder="Número" 
-                            name="numero"/>
+                            name="numero" value="<%= dadosfuncionario.numero%>"/>
                     </div>
                 </div>
 
                 <div class="form-row">
                         <div class="form-group col-md-6">
-                                <label for="bairro"><span>*</span>Bairro:</label>
+                                <label for="bairro"><span class="spanO">*</span>Bairro:</label>
                                 <input type="text" class="form-control" placeholder="Bairro" 
-                                name="bairro"/>
+                                name="bairro" value="<%= dadosfuncionario.bairro%>"/>
                         </div>
                         <div class="form-group col-md-6">
-                                <label for="cidade"><span>*</span>Cidade:</label>
+                                <label for="cidade"><span class="spanO">*</span>Cidade:</label>
                                 <input type="text" class="form-control" placeholder="Cidade" 
-                                name="cidade"/>
+                                name="cidade" value="<%= dadosfuncionario.cidade%>"/>
                         </div>
                     </div>
 
@@ -92,52 +120,7 @@
                     Início
                 </button>
             </form>
-            <h1>Lista de Funcionários já cadastrados</h1>
-            <table class="table">
-                    <thead class="thead-dark">
-                      <tr>
-                        <th>Nome Funcionário</th>
-                        <th>Matricula</th>
-                        <th>RG</th>
-                        <th>CPF</th>
-                        <th>Rua</th>
-                        <th>Numero</th>
-                        <th>Bairro</th>
-                        <th>Cidade</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
-                      </tr>
-                    </thead>
-          
-                    <tbody>
-                      <% docs.forEach(function(dados) { %>
-                      <tr>
-                        <td><%= dados.nome%></td>
-                        <td><%= dados.matricula%></td>
-                        <td><%= dados.rg%></td>
-                        <td><%= dados.cpf%></td>
-                        <td><%= dados.rua%></td>
-                        <td><%= dados.numero%></td>
-                        <td><%= dados.bairro%></td>
-                        <td><%= dados.cidade%></td>
-                        <td><button type="button" class="btn btn-warning" onclick="window.location.href = '/atualizar/<%= dados._id%>';">Editar</button></td>
-                        <td><button type="button" class="btn btn-danger" onclick="window.location.href = '/deletar';">Excluir</button></td>
-                      </tr>
-                      <%})%>
-                    </tbody>
-                  </table>
           </div>
       </body>
 
 </html>
-<style>
-        input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-</style>
-    
